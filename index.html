@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Интернет-магазин</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <header>
+        <div class="logo">Все для Дома</div>
+        <div class="search-bar">
+            <input type="text" placeholder="Введите запрос">
+            <button type="button">Поиск</button>
+        </div>
+        <div class="icons">
+            <a href="cart.html"><img src="img/корзина.png">Корзина</a>
+            <a href="lk.html"><img src="img/профиль.png">Личный кабинет</a>
+        </div>
+    </header>
+    <div class="notifications" id="notifications">
+        <!-- Уведомления -->
+    </div>
+    <main>
+        <div class="container">
+            <div class="sidebar">
+                <h2>Категории</h2>
+                <form id="filter-form">
+                    <div id="category-filters" class="filter-group">
+                        <!-- Категории -->
+                    </div>
+                    <h2>Стоимость</h2>
+                    <div class="price-filters">
+                        <label>
+                            От:
+                            <input type="number" name="min-price" min="0">
+                        </label>
+                        <label>
+                            До:
+                            <input type="number" name="max-price" min="0">
+                        </label>
+                    </div>
+                    <label>
+                        <input type="checkbox" name="discount" value="true"> Только товары со скидками
+                    </label>
+                    <button type="button" onclick="applyFilters()">Применить</button>
+                </form>
+            </div>
+            <div class="catalog">
+                <div class="sort-container">
+                    <h1>Каталог</h1>
+                    <select id="sort-select" onchange="sortProducts()">
+                        <option value="rating-asc">По возрастанию рейтинга</option>
+                        <option value="rating-desc">По убыванию рейтинга</option>
+                        <option value="price-asc">По возрастанию цены</option>
+                        <option value="price-desc">По убыванию цены</option>
+                    </select>
+                </div>
+                <div class="products-wrapper">
+                    <div class="products" id="products">
+                        <!-- Продукты  -->
+                    </div>
+                </div>
+                <button id="load-more-button" onclick="loadMoreProducts()">Загрузить еще</button>
+            </div>
+        </div>
+    </main>
+    <footer class="footer">
+        <p>Позвонить нам <a href="tel:+78009001122">+7 800 900 11 22</a></p>
+    </footer>
+    <script src="index.js"></script>
+</body>
+</html>
