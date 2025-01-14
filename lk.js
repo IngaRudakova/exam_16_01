@@ -3,7 +3,7 @@ const apiKey = '65f931a2-29e2-4ca0-b490-5a19bb332145';
 let orders = [];
 let products = [];
 
-// Функция для загрузки продуктов с API 
+// Функция для загрузки продуктов с API
 async function fetchProducts() {
     let allProducts = [];
     let page = 1;
@@ -46,6 +46,22 @@ async function fetchOrders() {
     } catch (error) {
         console.error('Error fetching orders:', error);
         return [];
+    }
+}
+
+// Функция для получения информации о конкретном заказе по его ID
+async function fetchOrderById(orderId) {
+    try {
+        const response = await fetch(`${apiUrl}/orders/${orderId}?api_key=${apiKey}`);
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
+        console.log('Fetched order by ID:', data); // Логирование полученных данных
+        return data;
+    } catch (error) {
+        console.error('Error fetching order by ID:', error);
+        return null;
     }
 }
 
@@ -93,7 +109,6 @@ function formatDate(dateString) {
     const year = date.getFullYear();
     return `${day}.${month}.${year}`;
 }
-
 
 // Функция для отображения заказов в таблице
 function displayOrders(orders) {
@@ -192,6 +207,52 @@ function viewOrder(orderId) {
     document.getElementById('viewModal').style.display = 'flex';
 }
 
+// Функция для сохранения изменений заказа
+document.getElementById('editOrderForm').addEventListener('submit', async function(event) {
+    event.preventDefault();
+    const orderId = event.target.dataset.orderId;
+    const formData = new FormData(event.target);
+    const orderData = {};
+
+    formData.forEach((value, key) => {
+        if (value !== '') {
+            orderData[key] = value;
+        }
+    });
+
+    console.log('Updating order with ID:', orderId);
+    console.log('Order data:', orderData);
+
+    try {
+        const response = await fetch(`${apiUrl}/orders/${orderId}?api_key=${apiKey}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(orderData)
+        });
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        const updatedOrder = await response.json();
+        console.log('Updated order:', updatedOrder);
+
+        // Повторно запрашиваем информацию о заказе
+        const refreshedOrder = await fetchOrderById(orderId);
+        if (refreshedOrder) {
+            orders = orders.map(o => o.id === orderId ? refreshedOrder : o);
+            console.log('Updated orders array:', orders);
+            displayOrders(orders); // Обновляем отображение заказов сразу после сохранения
+            showNotification('Заказ успешно обновлен!', 'success');
+        } else {
+            showNotification('Ошибка при обновлении заказа', 'error');
+        }
+    } catch (error) {
+        console.error('Error updating order:', error);
+        showNotification('Ошибка при обновлении заказа', 'error');
+    }
+    closeModal('editModal');
+});
 
 // Функция для редактирования заказа в модальном окне
 function editOrder(orderId) {
@@ -250,7 +311,9 @@ function deleteOrder(orderId) {
                 throw new Error('Network response was not ok');
             }
             orders = orders.filter(o => o.id !== orderId);
-            displayOrders(orders);
+            console.log('Updated orders array after deletion:', orders);
+
+            displayOrders(orders); // Обновляем отображение заказов сразу после удаления
             showNotification('Заказ успешно удален!', 'success');
         } catch (error) {
             console.error('Error deleting order:', error);
@@ -259,43 +322,6 @@ function deleteOrder(orderId) {
         closeModal('deleteModal');
     };
 }
-
-// Функция для сохранения изменений заказа
-document.getElementById('editOrderForm').addEventListener('submit', async function(event) {
-    event.preventDefault();
-    const orderId = event.target.dataset.orderId;
-    const formData = new FormData(event.target);
-    const orderData = {
-        full_name: formData.get('full_name'),
-        delivery_address: formData.get('delivery_address'),
-        delivery_date: formData.get('delivery_date'),
-        delivery_interval: formData.get('delivery_interval'),
-        phone: formData.get('phone'),
-        email: formData.get('email'),
-        comment: formData.get('comment')
-    };
-
-    try {
-        const response = await fetch(`${apiUrl}/orders/${orderId}?api_key=${apiKey}`, {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(orderData)
-        });
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        const updatedOrder = await response.json();
-        orders = orders.map(o => o.id === orderId ? updatedOrder : o);
-        displayOrders(orders);
-        showNotification('Заказ успешно обновлен!', 'success');
-    } catch (error) {
-        console.error('Error updating order:', error);
-        showNotification('Ошибка при обновлении заказа', 'error');
-    }
-    closeModal('editModal');
-});
 
 // Функция для отображения уведомления
 function showNotification(message, type = 'info') {
@@ -356,9 +382,11 @@ async function init() {
     }
 }
 
+// Инициализация приложения
 init();
+
 //доделать:
 // добавить в редактирование удаление товара
 // изменение стоимости при удаление (с учетом доставки)
-// исправить, найти норм иконку для каталога
+// что с иконкой для каталога??
 // исправить фильтрацию 
