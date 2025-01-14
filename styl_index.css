@@ -50,6 +50,11 @@ header .search-bar button:active {
     background-color: #3b2144; /* Цвет при нажатии */
 }
 
+header .icons {
+    display: flex;
+    align-items: center;
+}
+
 header .icons a {
     display: flex;
     align-items: center;
@@ -278,12 +283,12 @@ header .icons img {
 }
 
 #load-more-button:hover {
-    background-color: #466a72; /* Цвет при наведении */
+    background-color: #653a75; /* Цвет при наведении */
     transform: translateY(-2px); /* Поднятие кнопки при наведении */
 }
 
 #load-more-button:active {
-    background-color: #385755; /* Цвет при нажатии */
+    background-color: #2a1734; /* Цвет при нажатии */
     transform: translateY(0); /* Возвращение кнопки на место при нажатии */
 }
 /* Для мобильных устройств */

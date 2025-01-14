@@ -21,6 +21,11 @@ header .logo {
     font-size: 24px;
 }
 
+header .icons {
+    display: flex;
+    align-items: center;
+}
+
 header .icons a {
     display: flex;
     align-items: center;
