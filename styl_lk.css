@@ -17,7 +17,20 @@ header {
     z-index: 1001; /* хедер находится над уведомлениями */
 }
 header .logo {
-    font-size: 24px;
+    display: flex;
+    align-items: center;
+    font-size: 25px;
+    color: #ffa8f5; /* Цвет текста */
+    font-weight: bold; /* Жирный шрифт */
+    text-transform: uppercase; /* Все буквы заглавные */
+    margin: 7px; /* Отступы сверху и снизу */
+    text-align: center; /* Центрирование текста */
+}
+
+header .logo img {
+    width: 40px; /* Ширина изображения */
+    height: auto; /* Автоматическая высота */
+    margin-right: 10px; /* Отступ справа от изображения */
 }
 header .icons {
     display: flex;
