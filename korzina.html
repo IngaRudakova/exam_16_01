@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Интернет-магазин</title>
+    <link rel="stylesheet" href="styl_korzina.css">
+</head>
+<body>
+    <header>
+        <div class="logo">Все для Дома</div>
+        <div class="icons">
+            <a href="index.html"><img scr ="img/главная.png">Каталог</a>
+            <a href="lk.html"><img src="img/профиль.png">Личный кабинет</a>
+        </div>
+    </header>
+    <div class="notifications" id="notifications">
+        <!-- Уведомления -->
+    </div>
+    <main>
+        <div class="cart-container">
+            <h1>Корзина</h1>
+            <div class="cart-items" id="cart-items">
+                <!-- Товары  -->
+            </div>
+        </div>
+        <h2 class="order-text">Оформление заказа</h2>
+        <div class="order-form-container">
+            <!-- <h2>Оформление заказа</h2> -->
+            <form id="order-form">
+                <div class="form-column">
+                    <label for="full_name">Имя:</label>
+                    <input type="text" id="full_name" name="full_name" required>
+
+                    <label for="phone">Номер телефона:</label>
+                    <input type="text" id="phone" name="phone" required>
+
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+
+                    <div class="checkbox-container">
+                        <input type="checkbox" id="subscribe" name="subscribe">
+                        <label for="subscribe">Подписаться на рассылку</label>
+                    </div>
+                    
+
+                    <div id="comment-container">
+                        <label for="comment">Комментарий:</label>
+                        <textarea id="comment" name="comment"></textarea>
+                    </div>
+                </div>
+                <div class="form-column">
+                    <label for="delivery_address">Адрес доставки:</label>
+                    <input type="text" id="delivery_address" name="delivery_address" required>
+
+                    <label for="delivery_date">Дата доставки:</label>
+                    <input type="text" id="delivery_date" name="delivery_date" placeholder="dd.mm.yyyy" required>
+
+                    <label for="delivery_interval">Временной интервал доставки:</label>
+                    <select id="delivery_interval" name="delivery_interval" required>
+                        <option value="08:00-12:00">08:00-12:00</option>
+                        <option value="12:00-14:00">12:00-14:00</option>
+                        <option value="14:00-18:00">14:00-18:00</option>
+                        <option value="18:00-22:00">18:00-22:00</option>
+                    </select>
+
+                    <label for="total-amount">Итоговая стоимость:</label>
+                    <input type="text" id="total-amount" name="total-amount" readonly>
+
+                    <label for="delivery-cost-label">Стоимость доставки:</label>
+                    <span id="delivery-cost-label">0 руб.</span>
+
+
+                    <div class="form-buttons">
+                        <button type="reset">Сбросить</button>
+                        <button type="submit">Оформить</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </main>
+    <footer class="footer">
+        <p>Позвонить нам <a href="tel:+78009001122">+7 800 900 11 22</a></p>
+    </footer>
+    <script src="korzina.js"></script>
+</body>
+</html>
