@@ -6,8 +6,8 @@ body {
 }
 
 header {
-    background-color: #00776f;
-    color: white;
+    background-color: #410070;
+    color: rgb(255, 255, 255);
     padding: 10px 20px;
     display: flex;
     justify-content: space-between;
@@ -35,7 +35,7 @@ header .search-bar input {
 
 header .search-bar button {
     padding: 10px 20px;
-    background-color: #a1c4c3;
+    background-color: #bba1c4;
     color: white;
     border: none;
     cursor: pointer;
@@ -43,14 +43,16 @@ header .search-bar button {
 }
 
 header .search-bar button:hover {
-    background-color: #6a778a; /* Цвет при наведении */
+    background-color: #683f68; /* Цвет при наведении */
 }
 
 header .search-bar button:active {
-    background-color: #4b516f; /* Цвет при нажатии */
+    background-color: #3b2144; /* Цвет при нажатии */
 }
 
 header .icons a {
+    display: flex;
+    align-items: center;
     margin-left: 5px;
     margin-right: 40px;
     color: white;
@@ -60,12 +62,13 @@ header .icons a {
 header .icons img {
     width: 20px;
     height: 20px;
+    margin-right: 13px; /* Добавляем отступ между иконкой и текстом */
 }
 
 .notifications {
     display: none;
-    background-color: #f8d7da;
-    color: #721c24;
+    background-color: #f697ffa0;
+    color: #a54851;
     padding: 10px;
     text-align: center;
     position: fixed; /* Фиксированное позиционирование */
@@ -147,7 +150,7 @@ header .icons img {
 .sidebar button {
     margin-top: 20px;
     padding: 10px;
-    background-color: #00776f;
+    background-color: #410070;
     color: white;
     border: none;
     cursor: pointer;
@@ -221,7 +224,7 @@ header .icons img {
 .products .product .rating .rating-value {
     margin-left: 10px;
     font-size: 14px;
-    color: #00776f;
+    color: #410070;
 }
 
 .products .product .price {
@@ -240,7 +243,7 @@ header .icons img {
 .products .product button {
     margin-top: auto;
     padding: 10px;
-    background-color: #00776f;
+    background-color: #8452a9;
     color: white;
     border: none;
     cursor: pointer;
@@ -249,7 +252,7 @@ header .icons img {
 }
 
 .footer {
-    background-color: #00776f;
+    background-color: #410070;
     color: white;
     text-align: center;
     padding: 10px 0;
@@ -282,4 +285,71 @@ header .icons img {
 #load-more-button:active {
     background-color: #385755; /* Цвет при нажатии */
     transform: translateY(0); /* Возвращение кнопки на место при нажатии */
+}
+/* Для мобильных устройств */
+@media (max-width: 768px) {
+    header .search-bar input {
+        width: 100%; /* Ширина поисковой строки на мобильных устройствах */
+    }
+
+    header .icons a {
+        display: block; /* Иконки в столбик */
+        margin: 5px 0;
+    }
+
+    .container {
+        flex-direction: column; /* Столбцы в строку */
+    }
+
+    .sidebar {
+        width: 100%; /* Ширина сайдбара на мобильных устройствах */
+        padding: 10px;
+    }
+
+    .catalog {
+        margin: 10px;
+    }
+
+    .products {
+        grid-template-columns: 1fr; /* Один контейнер в строке */
+    }
+
+    .footer {
+        padding: 20px 0;
+    }
+
+    .sidebar .price-filters {
+        flex-direction: column; /* Столбцы в строку */
+        align-items: flex-start; /* Выравнивание по левому краю */
+    }
+
+    .sidebar .price-filters label {
+        width: 100%; /* Ширина поля ввода */
+        display: flex;
+        align-items: center; /* Выравнивание по центру */
+        justify-content: flex-start; /* Выравнивание по левому краю */
+        margin-bottom: 10px; /* Расстояние между полями */
+    }
+
+    .sidebar .price-filters input[type="number"] {
+        width: 60px; /* Ширина поля ввода */
+        margin-left: 5px; /* Расстояние от текста до поля ввода */
+    }
+
+    .sidebar button {
+        width: 50%; /* Ширина кнопки */
+        align-self: flex-start; /* Выравнивание кнопки по левому краю */
+    }
+}
+
+
+/* Для планшетов */
+@media (min-width: 769px) and (max-width: 1024px) {
+    header .search-bar input {
+        width: 300px; /* Ширина поисковой строки на планшетах */
+    }
+
+    .products {
+        grid-template-columns: repeat(2, 1fr); /* Два контейнера в строке */
+    }
 }
