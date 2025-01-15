@@ -15,7 +15,7 @@ header {
     position: fixed; /* Фиксированное позиционирование */
     width: 100%;
     top: 0;
-    z-index: 1001;  /* хедер находится над уведомлениями */
+    z-index: 1000;  
 }
 
 header .logo {
@@ -85,8 +85,8 @@ header .icons img {
 
 .notifications {
     display: none;
-    background-color: #f697ffa0;
-    color: #a54851;
+    background-color: #f697fff5;
+    color: #4b1a1f;
     padding: 10px;
     text-align: center;
     position: fixed; /* Фиксированное позиционирование */
@@ -161,8 +161,8 @@ header .icons img {
 }
 
 .sidebar .price-filters input[type="number"] {
-    width: 80px;
-    margin-left: 10px;
+    width: 60px;
+    margin-left: 5px;
 }
 
 .sidebar button {
@@ -408,7 +408,7 @@ header .icons img {
     }
 
     .sidebar .price-filters label {
-        width: 100%; /* Ширина поля ввода */
+        width: 90%; /* Ширина поля ввода */
         display: flex;
         align-items: center; /* Выравнивание по центру */
         justify-content: flex-start; /* Выравнивание по левому краю */
@@ -416,7 +416,7 @@ header .icons img {
     }
 
     .sidebar .price-filters input[type="number"] {
-        width: 60px; /* Ширина поля ввода */
+        width: 40px; /* Ширина поля ввода */
         margin-left: 5px; /* Расстояние от текста до поля ввода */
     }
 

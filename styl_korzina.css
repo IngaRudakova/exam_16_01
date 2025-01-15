@@ -1,8 +1,8 @@
 body, html {
     font-family: Arial, sans-serif;
-    margin: 3% 0;
+    margin: 0;
     padding: 0;
-    height: 80%;
+    height: 100%;
 }
 
 header {
@@ -15,7 +15,7 @@ header {
     position: fixed; /* Фиксированное позиционирование */
     width: 100%;
     top: 0;
-    z-index: 1001;  /* хедер находится над уведомлениями */
+    z-index: 1000;  
     transition: padding 0.3s; /* Плавное изменение отступов */
 }
 
@@ -63,8 +63,8 @@ header .icons img {
 
 .notifications {
     display: none;
-    background-color: #f697ffa0;
-    color: #a54851;
+    background-color: #f697fff5;
+    color: #4b1a1f;
     padding: 10px;
     text-align: center;
     position: fixed; /* Фиксированное позиционирование */
@@ -92,7 +92,7 @@ header .icons img {
 }
 
 .cart-container {
-    margin: 20px;
+    margin: 80px 20px 20px 20px; /* Добавляем отступ сверху для контента */
 }
 
 .cart-items {

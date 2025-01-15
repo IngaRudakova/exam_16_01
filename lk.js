@@ -255,6 +255,7 @@ document.getElementById('editOrderForm').addEventListener('submit', async functi
 });
 
 // Функция для редактирования заказа в модальном окне
+// Функция для редактирования заказа в модальном окне
 function editOrder(orderId) {
     const order = orders.find(o => o.id === orderId);
     if (!order) return;
@@ -281,9 +282,10 @@ function editOrder(orderId) {
         </div>
         <hr>
         <h3>Состав заказа:</h3>
-        ${goodIds.map(goodId => `
+        ${goodIds.map((goodId, index) => `
             <div class="order-composition-item">
-                ${getProductName(goodId)}
+                ${index + 1}. ${getProductName(goodId)}
+                <button onclick="removeProductFromOrder(${orderId}, ${goodId})" title="Удалить товар"><i class="fas fa-trash-alt"></i></button>
             </div>
         `).join('')}
         <hr>
@@ -295,6 +297,7 @@ function editOrder(orderId) {
 
     document.getElementById('editModal').style.display = 'flex';
 }
+
 
 // Функция для удаления заказа
 function deleteOrder(orderId) {
@@ -322,6 +325,92 @@ function deleteOrder(orderId) {
         closeModal('deleteModal');
     };
 }
+
+// Функция для удаления товара из заказа
+async function removeProductFromOrder(orderId, productId) {
+    const order = orders.find(o => o.id === orderId);
+    if (!order) return;
+
+    const goodIds = order.good_ids || [];
+    const updatedGoodIds = goodIds.filter(id => id !== productId);
+
+    // Обновляем заказ локально для отображения в модальном окне
+    const totalAmount = calculateTotalAmount(updatedGoodIds);
+
+    // Обновляем отображение в модальном окне
+    const editOrderComposition = document.getElementById('editOrderComposition');
+    editOrderComposition.innerHTML = `
+        <div class="order-details-row">
+            <label>Дата оформления</label>
+            <div>${formatDateTime(order.created_at)}</div>
+        </div>
+        <hr>
+        <h3>Состав заказа:</h3>
+        ${updatedGoodIds.map((goodId, index) => `
+            <div class="order-composition-item">
+                ${index + 1}. ${getProductName(goodId)}
+                <button onclick="removeProductFromOrder(${orderId}, ${goodId})" title="Удалить товар">
+                    <i class="fas fa-trash-alt"></i>
+                </button>
+            </div>
+        `).join('')}
+        <hr>
+        <div class="total-amount">
+            <label>Стоимость</label>
+            <div>${totalAmount} руб.</div>
+        </div>
+    `;
+
+    // Обновляем локальное состояние заказа
+    order.good_ids = updatedGoodIds;
+}
+
+// Обработчик кнопки сохранить
+document.getElementById('editOrderForm').addEventListener('submit', async function(event) {
+    event.preventDefault();
+    const orderId = event.target.dataset.orderId;
+    const order = orders.find(o => o.id === orderId);
+
+    const formData = new FormData(event.target);
+    const orderData = {
+        good_ids: order.good_ids, // Добавляем обновленный список товаров
+        full_name: formData.get('full_name'),
+        delivery_address: formData.get('delivery_address'),
+        delivery_date: formData.get('delivery_date'),
+        delivery_interval: formData.get('delivery_interval'),
+        phone: formData.get('phone'),
+        email: formData.get('email'),
+        comment: formData.get('comment')
+    };
+
+    try {
+        const response = await fetch(`${apiUrl}/orders/${orderId}?api_key=${apiKey}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(orderData)
+        });
+
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+
+        const updatedOrder = await response.json();
+
+        // Обновляем локальный массив заказов
+        orders = orders.map(o => o.id === orderId ? updatedOrder : o);
+
+        // Обновляем отображение на странице
+        displayOrders(orders);
+
+        showNotification('Заказ успешно обновлен!', 'success');
+        closeModal('editModal');
+    } catch (error) {
+        console.error('Error updating order:', error);
+        showNotification('Ошибка при обновлении заказа', 'error');
+    }
+});
 
 // Функция для отображения уведомления
 function showNotification(message, type = 'info') {
@@ -384,10 +473,3 @@ async function init() {
 
 // Инициализация приложения
 init();
-
-//доделать:
-// понять почему только после перезагрузки показаны изменения
-// стили адаптивности ( + поправить для первой страницы)
-// добавить удаление товара
-
-// исправить фильтрацию 
