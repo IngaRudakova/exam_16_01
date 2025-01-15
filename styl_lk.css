@@ -4,6 +4,7 @@ body, html {
     padding: 0;
     height: 80%;
 }
+
 header {
     background-color: #410070;
     color: white;
@@ -16,6 +17,7 @@ header {
     top: 0;
     z-index: 1001; /* хедер находится над уведомлениями */
 }
+
 header .logo {
     display: flex;
     align-items: center;
@@ -32,6 +34,7 @@ header .logo img {
     height: auto; /* Автоматическая высота */
     margin-right: 10px; /* Отступ справа от изображения */
 }
+
 header .icons {
     display: flex;
     align-items: center;
@@ -56,25 +59,31 @@ header .icons img {
 .orders-section {
     padding: 0% 8%;
 }
+
 .orders-section h2 {
     margin-bottom: 20px;
 }
+
 /* Стили для таблицы заказов */
 .orders-table {
     width: 100%;
     border-collapse: collapse;
 }
+
 .orders-table th, .orders-table td {
     border: 1px solid #ddd;
     padding: 8px;
     text-align: left;
 }
+
 .orders-table th {
     background-color: #f2f2f2;
 }
+
 .orders-table tr:nth-child(even) {
     background-color: #f9f9f9;
 }
+
 /* Стили для кнопок действий */
 .order-actions button {
     background: none;
@@ -82,6 +91,7 @@ header .icons img {
     cursor: pointer;
     margin-left: 5px;
 }
+
 /* Стили для модальных окон */
 .modal {
     display: none;
@@ -97,6 +107,7 @@ header .icons img {
     align-items: center;
     z-index: 1002;
 }
+
 .modal-content {
     background-color: #fefefe;
     margin: auto;
@@ -109,6 +120,7 @@ header .icons img {
     box-shadow: 0 5px 15px rgba(0,0,0,0.3);
     text-align: left;
 }
+
 /* Стили для кнопки закрытия модального окна */
 .close {
     position: absolute;
@@ -117,18 +129,22 @@ header .icons img {
     font-size: 28px;
     font-weight: bold;
 }
+
 .close:hover,
 .close:focus {
     color: red;
     cursor: pointer;
 }
+
 /* Стили для заголовков и текста в модальных окнах */
 .modal h2 {
     margin-bottom: 20px;
 }
+
 .modal p {
     margin: 5px 0;
 }
+
 /* Стили для кнопок в модальных окнах */
 .modal button {
     display: inline-block;
@@ -140,30 +156,35 @@ header .icons img {
     border-radius: 5px;
     cursor: pointer;
 }
+
 .modal button:hover {
     background-color: #998a8a;
     color: white;
 }
+
 /* Стили для строк деталей заказа */
 .order-details-row {
     display: flex;
     justify-content: space-between;
     margin-bottom: 10px;
 }
+
 .order-details-row label {
     flex: 1;
     text-align: right;
     margin-right: 20px;
-    
 }
+
 .order-details-row input, .order-details-row textarea {
     flex: 2;
     text-align: left;
 }
+
 .order-details-row div {
     display: flex;
     flex-direction: column;
 }
+
 .order-details-row input[type="radio"] {
     margin-right: 5px;
 }
@@ -172,16 +193,19 @@ header .icons img {
 .order-composition {
     margin-top: 20px;
 }
+
 .order-composition-item {
     display: flex;
     justify-content: space-between;
     margin-bottom: 10px;
 }
+
 .order-composition-item .label {
     flex: 1;
     text-align: right;
     margin-right: 20px;
 }
+
 .order-composition-item .value {
     flex: 2;
     text-align: left;
@@ -193,6 +217,7 @@ header .icons img {
     justify-content: flex-end;
     margin-top: 20px;
 }
+
 .modal-footer button {
     margin-right: 10px;
 }
@@ -246,6 +271,7 @@ header .icons img {
     bottom: 0;
     position: fixed;
 }
+
 /* Стили для модального окна просмотра заказа */
 #viewModal .modal-content {
     width: 35%; /*  ширина модального окна */
@@ -279,7 +305,7 @@ header .icons img {
 
 #viewModal .order-composition-item {
     width: 100%; /* всю ширину */
-    margin-bottom: 5px; 
+    margin-bottom: 5px;
     text-align: left;
 }
 
@@ -313,7 +339,7 @@ header .icons img {
 
 /* Стили для модального окна редактирования заказа */
 #editModal .modal-content {
-    width: 35%; 
+    width: 35%;
     padding: 20px;
     font-family: Arial, sans-serif;
 }
@@ -328,7 +354,7 @@ header .icons img {
 #editModal .order-details-row label {
     flex: 1;
     text-align: right;
-    margin-right: 10px; 
+    margin-right: 10px;
     font-weight: bold; /* Жирный шрифт для меток */
 }
 
@@ -344,7 +370,7 @@ header .icons img {
 
 #editModal .order-composition-item {
     width: 100%; /* Занимает всю ширину */
-    margin-bottom: 5px; 
+    margin-bottom: 5px;
     text-align: left;
 }
 
@@ -374,4 +400,154 @@ header .icons img {
     text-align: right;
     font-weight: bold;
     margin-top: 20px;
+}
+
+/* Для устройств с шириной экрана до 992px */
+@media (max-width: 992px) {
+    header {
+        padding: 10px 15px;
+    }
+
+    header .logo {
+        font-size: 20px;
+    }
+
+    header .logo img {
+        width: 30px;
+    }
+    header .icons a {
+        font-size: 14px;
+        margin-right: 10px; /* Уменьшаем расстояние между иконками */
+    }
+
+    header .icons img {
+        width: 15px;
+        height: 15px;
+    }
+
+    .orders-section {
+        padding: 80px 5% 80px 5%;
+    }
+
+    .orders-table th:nth-child(3), .orders-table td:nth-child(3) {
+        width: 40%;
+    }
+
+    .modal-content {
+        width: 80%;
+        max-width: 500px;
+    }
+}
+
+/* Для устройств с шириной экрана до 768px */
+@media (max-width: 768px) {
+    header {
+        padding: 8px 10px;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    header .logo {
+        font-size: 18px;
+    }
+
+    header .logo img {
+        width: 25px;
+    }
+
+    header .icons {
+        justify-content: center;
+        flex-direction: row;
+        margin-top: 10px;
+    }
+
+    header .icons a {
+        font-size: 12px;
+        margin: 0 8px; /* Уменьшаем расстояние между иконками */
+    }
+
+    header .icons img {
+        width: 12px;
+        height: 12px;
+    }
+
+    .orders-section {
+        padding: 80px 2% 80px 2%;
+    }
+
+    .orders-table th, .orders-table td {
+        padding: 5px;
+    }
+
+    .orders-table th:nth-child(3), .orders-table td:nth-child(3) {
+        width: 35%;
+    }
+
+    .modal-content {
+        width: 95%;
+        max-width: 700px;
+    }
+}
+
+/* Для устройств с шириной экрана до 480px */
+@media (max-width: 480px) {
+    header {
+        padding: 5px 10px;
+        height: auto;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    header .logo {
+        font-size: 16px;
+    }
+
+    header .logo img {
+        width: 20px;
+    }
+
+    header .icons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    header .icons a {
+        display: flex;
+        margin: 5px 0;
+        margin-right: 0;
+        font-size: 10px;
+    }
+
+    header .icons img {
+        width: 10px;
+        height: 10px;
+    }
+
+    .orders-section {
+        padding: 80px 1% 80px 1%;
+    }
+
+    .orders-table th, .orders-table td {
+        padding: 5px;
+        font-size: 12px;
+    }
+
+    .orders-table th:nth-child(3), .orders-table td:nth-child(3) {
+        width: 30%;
+    }
+
+    .modal-content {
+        width: 98%;
+        max-width: 500px;
+    }
+
+    .modal-footer {
+        flex-direction: column;
+    }
+
+    .modal-footer button {
+        width: 100%;
+        margin-top: 10px;
+    }
 }

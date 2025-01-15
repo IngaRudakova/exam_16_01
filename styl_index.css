@@ -304,15 +304,85 @@ header .icons img {
     background-color: #2a1734; /* Цвет при нажатии */
     transform: translateY(0); /* Возвращение кнопки на место при нажатии */
 }
-/* Для мобильных устройств */
-@media (max-width: 768px) {
+/* Для устройств с шириной экрана до 992px */
+@media (max-width: 992px) {
+    header {
+        padding: 10px 15px;
+    }
+
+    header .logo {
+        font-size: 20px;
+    }
+
+    header .logo img {
+        width: 30px;
+    }
+
     header .search-bar input {
-        width: 100%; /* Ширина поисковой строки на мобильных устройствах */
+        width: 250px;
+        padding: 8px;
+    }
+
+    header .search-bar button {
+        padding: 8px 15px;
+        font-size: 14px;
     }
 
     header .icons a {
-        display: block; /* Иконки в столбик */
-        margin: 5px 0;
+        font-size: 14px;
+        margin-right: 10px; /* Уменьшаем расстояние между иконками */
+    }
+
+    header .icons img {
+        width: 15px;
+        height: 15px;
+    }
+    .sidebar {
+        width: 25%; /* Ширина сайдбара на устройствах до 992px */
+    }
+
+    .catalog {
+        margin: 15px;
+    }
+
+    .products {
+        grid-template-columns: repeat(2, 1fr); /* Два контейнера в строке */
+    }
+}
+
+/* Для устройств с шириной экрана до 768px */
+@media (max-width: 768px) {
+    
+    header {
+        padding: 8px 10px;
+    }
+
+    header .logo {
+        font-size: 18px;
+    }
+
+    header .logo img {
+        width: 25px;
+    }
+
+    header .search-bar input {
+        width: 200px;
+        padding: 6px;
+    }
+
+    header .search-bar button {
+        padding: 6px 12px;
+        font-size: 12px;
+    }
+
+    header .icons a {
+        font-size: 12px;
+        margin-right: 8px; /* Уменьшаем расстояние между иконками */
+    }
+
+    header .icons img {
+        width: 12px;
+        height: 12px;
     }
 
     .container {
@@ -320,7 +390,7 @@ header .icons img {
     }
 
     .sidebar {
-        width: 100%; /* Ширина сайдбара на мобильных устройствах */
+        width: 100%; /* Ширина сайдбара на устройствах до 768px */
         padding: 10px;
     }
 
@@ -330,10 +400,6 @@ header .icons img {
 
     .products {
         grid-template-columns: 1fr; /* Один контейнер в строке */
-    }
-
-    .footer {
-        padding: 20px 0;
     }
 
     .sidebar .price-filters {
@@ -360,14 +426,42 @@ header .icons img {
     }
 }
 
-
-/* Для планшетов */
-@media (min-width: 769px) and (max-width: 1024px) {
-    header .search-bar input {
-        width: 300px; /* Ширина поисковой строки на планшетах */
+/* Для устройств с шириной экрана до 480px */
+@media (max-width: 480px) {
+    header {
+        padding: 5px 10px;
     }
 
-    .products {
-        grid-template-columns: repeat(2, 1fr); /* Два контейнера в строке */
+    header .logo {
+        font-size: 16px;
+    }
+
+    header .logo img {
+        width: 20px;
+    }
+
+    header .search-bar input {
+        width: 150px;
+        padding: 5px;
+    }
+
+    header .search-bar button {
+        padding: 5px 10px;
+        font-size: 10px;
+    }
+
+    header .icons a {
+        font-size: 10px;
+        margin-right: 2px; /* Уменьшаем расстояние между иконками */
+    }
+
+    header .icons img {
+        width: 10px;
+        height: 10px;
+    }
+
+
+    .footer {
+        padding: 20px 0;
     }
 }
